@@ -1,17 +1,138 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+        <!-- Columna del logo y título alineados a la izquierda -->
+        <ion-col size="4" class="ion-text-start">
+          <ion-title>
+          <ion-icon name="pizza-outline" size="large" color="primary"></ion-icon>
+          TITULO</ion-title>
+        </ion-col>
+        <ion-col size="4" class="ion-text-center">
+          <ion-searchbar placeholder="Buscar..."></ion-searchbar>
+
+        </ion-col>
+        <!-- Columna de los botones alineados a la derecha -->
+        <ion-col size="4" class="ion-text-end">
+          <ion-button id="click-trigger">Left-Click Me</ion-button>
+          <ion-popover trigger="click-trigger" triggerAction="click">
+            <ng-template>
+              <ion-card>
+                <img alt="Ejemplo de tarjeta" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+                <ion-card-header>
+                  <ion-card-title>Click Popover</ion-card-title>
+                  <ion-card-subtitle>Aparece al hacer clic</ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content>
+                  Este popover se activa cuando haces clic en el botón. Útil para mostrar información adicional.
+                </ion-card-content>
+              </ion-card>
+            </ng-template>
+          </ion-popover>
+
+          <ion-button id="context-menu-trigger">Right-Click Me</ion-button>
+          <ion-popover trigger="context-menu-trigger" triggerAction="context-menu">
+            <ng-template>
+              <ion-card>
+                <img alt="Ejemplo de tarjeta" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+                <ion-card-header>
+                  <ion-card-title>Context Menu Popover</ion-card-title>
+                  <ion-card-subtitle>Aparece con clic derecho</ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content>
+                  Este popover se activa al hacer clic derecho, ideal para menús contextuales o accesos rápidos.
+                </ion-card-content>
+              </ion-card>
+            </ng-template>
+          </ion-popover>
+
+          <ion-button id="hover-trigger">Calendario</ion-button>
+          <ion-popover trigger="hover-trigger" triggerAction="hover">
+            <ng-template>
+              <ion-card>
+                <ion-datetime></ion-datetime>
+              </ion-card>
+            </ng-template>
+          </ion-popover>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+
+
+    <ion-button id="open-toast" expand="block">Sorpresa</ion-button>
+
+    <ion-toast trigger="open-toast" message="sorprendido? desaparecera en 5 segundos" [duration]="5000"></ion-toast>
+
+
+
+
+
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
+
+
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-list class="ion-text-start">
+
+    <ion-item>
+      <ion-input label="Input with placeholder" placeholder="Enter company name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Input with value" value="121 S Pinckney St #300"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Readonly input" value="Madison" [readonly]="true"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Disabled input" value="53703" [disabled]="true" label-placement="start"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <div style="display: flex; align-items: center; gap: 8px;">
+      <ion-select label="Default label" placeholder="Favorite Fruit" label-placement="start">
+        <ion-select-option value="apple">Apple</ion-select-option>
+        <ion-select-option value="banana">Banana</ion-select-option>
+        <ion-select-option value="orange">Orange</ion-select-option>
+      </ion-select>
+    </div>
+    </ion-item>
+    
+    <ion-item class="ion-text-start">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <label>Opción</label> 
+        <ion-toggle></ion-toggle>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-button id="present-alert">Enviar</ion-button>
+<ion-alert trigger="present-alert" class="custom-alert" header="Estas seguro?" [buttons]="alertButtons"></ion-alert>
+    </ion-item>
+  </ion-list>
+
+
+
+
+  <ion-content>
+    <ion-list>
+      @for (item of items; track item; let index = $index) {
+      <ion-item>
+        <ion-avatar slot="start">
+          <img [src]="'https://picsum.photos/80/80?random=' + index" alt="avatar" />
+        </ion-avatar>
+        <ion-label>{{ item }}</ion-label>
+      </ion-item>
+      }
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-content>
 </ion-content>
